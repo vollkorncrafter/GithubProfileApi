@@ -27,9 +27,15 @@ def getUserImage(githubUser):
     biofont = ImageFont.truetype('arial.ttf', 28)
     loginfont = ImageFont.truetype('arial.ttf', 60)
     image_editable = ImageDraw.Draw(background)
-    image_editable.text((85,170), response['name'], (47, 54, 61), font=namefont)
+    try:
+        image_editable.text((85,170), response['name'], (47, 54, 61), font=namefont)
+    except:
+        pass
     image_editable.text((85,100), response['login']+"/", (47, 54, 61), font=loginfont)
-    image_editable.text((90,300), textwrap.fill(response['bio'], 50), (110, 118, 129), font=biofont)
+    try:
+        image_editable.text((90,300), textwrap.fill(response['bio'], 50), (110, 118, 129), font=biofont)
+    except:
+        pass
     try:
         image_editable.text((890,300), "location: "+response['location'], (110, 118, 129), font=biofont)
         background.paste(pinpoint, (858, 304))
